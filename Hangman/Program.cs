@@ -13,11 +13,12 @@ namespace Hangman
             //Introduction, explains rules to the player
             Console.WriteLine("Welcome to Hangman! You will be given a mystery word you have to guess!");
             Console.WriteLine("You have 5 guesses, each incorrect guess will add another limb on our hangman.");
-            //List of words that will randomly be chosen for the player to guess in 3 tries
+            //List of words that will randomly be chosen for the player to guess in 5 tries
             String[] words = { "Shrek", "Banana", "Monkey", "World", "Dinner" };
             Random rnd = new Random();
             int index = rnd.Next(words.Length);
             String word = words[index];
+            char[] right = new char[word.Length];
             int guesscount = 5;
             int correct = 0;
             foreach (char ch in word)
@@ -25,6 +26,18 @@ namespace Hangman
                 Console.Write("_");
                 correct++;
             }
+            for (int rightIndex = 0; rightIndex < right.Length; rightIndex++)
+            {
+                right[rightIndex] = '_';
+            }
+
+            void DisplayRight(char[] values) {
+                foreach (char ch in values)
+                {
+                    Console.Write(ch);
+                }
+            }
+
             Console.WriteLine("Letter count is " + word.Length);
             Console.WriteLine("Type your guess below");
             //Loop that runs until the player guesses the correct word or runs out of guesses
@@ -40,6 +53,8 @@ namespace Hangman
                         if (word[wordIndex] == guess[0])
                         {
                             Console.Write(guess[0]);
+                            right[currentIndex] = guess[0];
+                            DisplayRight(right);
                             correct--;
                         }
                         else
