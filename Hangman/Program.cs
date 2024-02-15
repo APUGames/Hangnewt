@@ -37,9 +37,6 @@ namespace Hangman
                     Console.Write(ch);
                 }
             }
-            Console.WriteLine(" ");
-            DisplayRight(right);
-
             Console.WriteLine("Letter count is " + word.Length);
             Console.WriteLine("Type your guess below");
             //Loop that runs until the player guesses the correct word or runs out of guesses
@@ -54,9 +51,7 @@ namespace Hangman
                     {
                         if (word[wordIndex] == guess[0])
                         {
-                            //Console.Write(guess[0]);
                             right[wordIndex] = guess[0];
-                            //DisplayRight(right);
                             correct--;
                         }
                         else
